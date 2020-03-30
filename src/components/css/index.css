@@ -1,0 +1,68 @@
+/** 常用色值 **/
+/** 常用字体大小 **/
+.header {
+  background: #ffffff;
+}
+.header .header-top {
+  height: 60px;
+  line-height: 60px;
+  padding: 0px 20px;
+  text-align: right;
+  /* 这个是Common组件中的样式 */
+}
+.header .header-top .logo {
+  line-height: 60px;
+  text-align: left;
+  font-size: 18px;
+}
+.header .header-top .logo img {
+  height: 40px;
+  vertical-align: middle;
+}
+.header .header-top .logo span {
+  margin-left: 5px;
+}
+.header .header-top a {
+  margin-left: 40px;
+}
+.header .breadcrumb {
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 20px;
+  border-top: 1px solid #f9c700;
+}
+.header .breadcrumb .breadcrumb-title {
+  text-align: center;
+  position: relative;
+  font-size: 18px;
+}
+.header .breadcrumb .breadcrumb-title:after {
+  position: absolute;
+  left: 60px;
+  top: 39px;
+  content: "";
+  border-top: 9px solid #ffffff;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+}
+.header .breadcrumb .weather {
+  text-align: right;
+}
+.header .breadcrumb .weather .date {
+  margin-right: 10px;
+}
+.header .breadcrumb .weather .weather-img {
+  margin-right: 5px;
+}
+.header .breadcrumb .weather .weather-img img {
+  width: 30px;
+}
+.simple-page .header-top {
+  background: #1890ff;
+  color: #ffffff;
+}
+.simple-page .ant-form,
+.simple-page .ant-col-12,
+.simple-page .weather {
+  display: none;
+}
