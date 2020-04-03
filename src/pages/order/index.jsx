@@ -232,7 +232,7 @@ export default class Order extends Component {
           <ETable
             columns={columns}
             dataSource={dataSource}
-            rowSelection="checkbox"
+            rowSelection="radio"
             getSelectItem={this.getSelectItem}
           />
           {/* <Table

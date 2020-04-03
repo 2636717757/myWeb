@@ -97,6 +97,25 @@ export default class FilterForm extends Component {
             </Form.Item>
           );
           formItemList.push(DATEPICKER);
+        } else if (item.type === "城市") {
+          const city = (
+            <Form.Item name="city" label="城市" key="2">
+              <Select
+                name=""
+                placeholder={placeholder}
+                style={{ width: width }}
+              >
+                {list.map((item, index) => {
+                  return (
+                    <Select.Option value={item.id} key={item.id}>
+                      {item.name}
+                    </Select.Option>
+                  );
+                })}
+              </Select>
+            </Form.Item>
+          );
+          formItemList.push(city);
         }
       });
     }
