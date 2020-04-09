@@ -1,28 +1,28 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import App from "./App";
-import Admin from "./Admin";
-import Login from "./pages/login/index";
-import Home from "./pages/home/index";
-import Buttons from "./pages/ui/Buttons";
-import Modals from "./pages/ui/Modals";
-import Loadings from "./pages/ui/Loadings";
-import Notification from "./pages/ui/Notification";
-import Messages from "./pages/ui/Messages";
-import Tabs from "./pages/ui/Tabs";
-import NoMatch from "./pages/noMatch/index";
-import Gallery from "./pages/ui/Gallery";
-import Carousel from "./pages/ui/Carousel";
-import FormLogin from "./pages/form/login";
-import FormReaister from "./pages/form/register";
-import BasicTable from "./pages/table/basicTable";
-import HighTable from "./pages/table/highTable";
-import City from "./pages/city/index";
-import Order from "./pages/order/index";
-import User from "./pages/user/index";
-import OrderDetail from "./pages/order/detail";
-import Common from "./common";
-import BikeMap from "./pages/map/bikeMap";
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import App from './App';
+import Admin from './Admin';
+import Login from './pages/login/index';
+import Home from './pages/home/index';
+import Buttons from './pages/ui/Buttons';
+import Modals from './pages/ui/Modals';
+import Loadings from './pages/ui/Loadings';
+import Notification from './pages/ui/Notification';
+import Messages from './pages/ui/Messages';
+import Tabs from './pages/ui/Tabs';
+import NoMatch from './pages/noMatch/index';
+import Gallery from './pages/ui/Gallery';
+import Carousel from './pages/ui/Carousel';
+import FormLogin from './pages/form/login';
+import FormReaister from './pages/form/register';
+import BasicTable from './pages/table/basicTable';
+import HighTable from './pages/table/highTable';
+import City from './pages/city/index';
+import Order from './pages/order/index';
+import User from './pages/user/index';
+import OrderDetail from './pages/order/detail';
+import Common from './common';
+import BikeMap from './pages/map/bikeMap';
 
 export default class IRouter extends Component {
   render() {
@@ -40,10 +40,7 @@ export default class IRouter extends Component {
                     <Route path="/admin/ui/buttons" component={Buttons} />
                     <Route path="/admin/ui/modals" component={Modals} />
                     <Route path="/admin/ui/loadings" component={Loadings} />
-                    <Route
-                      path="/admin/ui/notification"
-                      component={Notification}
-                    />
+                    <Route path="/admin/ui/notification" component={Notification} />
                     <Route path="/admin/ui/messages" component={Messages} />
                     <Route path="/admin/ui/tabs" component={Tabs} />
                     <Route path="/admin/ui/gallery" component={Gallery} />
@@ -68,10 +65,7 @@ export default class IRouter extends Component {
             render={() => {
               return (
                 <Common>
-                  <Route
-                    path="/common/order/detail/:orderId"
-                    component={OrderDetail}
-                  />
+                  <Route path="/common/order/detail/:orderId" component={OrderDetail} />
                 </Common>
               );
             }}
