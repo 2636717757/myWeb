@@ -4,48 +4,48 @@ url:请求地址,
 opts:选项，参数({param:"默认callback"}或{timeout:"默认60000"}或{prefix:"默认__jp"}或{name:"默认prefix+incremented counter"}),
 fn:回调函数
 */
-import React, { Component } from "react";
-import { Row, Col } from "antd";
-import "./index.less";
-import Util from "./../../utils/utils";
-import axios from "axios";
+import React, { Component } from 'react';
+import { Row, Col } from 'antd';
+import './index.less';
+import Util from './../../utils/utils';
+import axios from 'axios';
+import { connect } from 'react-redux';
 //统一管理jsonp
 // import axios from "./../../axios/index";
-export default class Header extends Component {
+class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "tom",
-      sysTime: "",
-      dayPictureUrl: "",
-      weather: "",
-      error: ""
+      userName: 'tom',
+      sysTime: '',
+      dayPictureUrl: '',
+      weather: '',
+      error: '',
     };
   }
   componentDidMount() {
     setInterval(() => {
       let sysTime = Util.formateDate(new Date().getTime());
       this.setState({
-        sysTime
+        sysTime,
       });
     }, 1000);
     //配置代理
-    let city = "beijing";
-    let weatherUrl =
-      "location=" + city + "&output=json&ak=3p49MVra6urFRGOT9s8UBWr2";
+    let city = 'beijing';
+    let weatherUrl = 'location=' + city + '&output=json&ak=3p49MVra6urFRGOT9s8UBWr2';
     axios
-      .get("/weather?" + weatherUrl)
+      .get('/weather?' + weatherUrl)
       .then(res => {
         console.log(res.data);
-        if (res.data.status === "success") {
+        if (res.data.status === 'success') {
           let data = res.data.results[0].weather_data[0];
           this.setState({
             dayPictureUrl: data.dayPictureUrl,
-            weather: data.weather
+            weather: data.weather,
           });
         } else {
           this.setState({
-            error: <span style={{ color: "#ff0000" }}>{res.data.message}</span>
+            error: <span style={{ color: '#ff0000' }}>{res.data.message}</span>,
           });
         }
       })
@@ -88,20 +88,20 @@ export default class Header extends Component {
               <span>IMooc 通用管理系统</span>
             </Col>
           ) : (
-            ""
+            ''
           )}
-          <Col span={menuType ? "18" : "24"}>
+          <Col span={menuType ? '18' : '24'}>
             <span>欢迎，{this.state.userName}</span>
             <a href="/">退出</a>
           </Col>
         </Row>
         {/* 用Common组件传过来的属性menuType进行判断 */}
         {menuType ? (
-          ""
+          ''
         ) : (
           <Row className="breadcrumb">
             <Col span="4" className="breadcrumb-title">
-              首页
+              {this.props.mianbaoxie}
             </Col>
             <Col span="20" className="weather">
               <span className="date">{this.state.sysTime}</span>
@@ -119,3 +119,9 @@ export default class Header extends Component {
     );
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    mianbaoxie: state.get('mianbaoxie'),
+  };
+};
+export default connect(mapStateToProps)(Header);

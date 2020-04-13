@@ -1,58 +1,48 @@
-import React, { Component } from "react";
-import {
-  Card,
-  Button,
-  Modal,
-  Form,
-  Input,
-  Radio,
-  DatePicker,
-  Select,
-  message
-} from "antd";
-import ETable from "./../../components/ETable/index";
-import BaseForm from "./../../components/BaseForm/index";
-import "./../../mock/user/user_list";
-import axios from "axios";
-import moment from "moment";
+import React, { Component } from 'react';
+import { Card, Button, Modal, Form, Input, Radio, DatePicker, Select, message } from 'antd';
+import ETable from './../../components/ETable/index';
+import BaseForm from './../../components/BaseForm/index';
+import './../../mock/user/user_list';
+import axios from 'axios';
+import moment from 'moment';
 export default class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: [],
-      type: "",
+      type: '',
       /* Modal弹窗的显示与隐藏 */
       isVisible: false,
-      title: "",
-      selectItem: []
+      title: '',
+      selectItem: [],
+      dataSource: [],
     };
   }
   getSelectItem = selectItem => {
     this.setState({
-      selectItem
+      selectItem,
     });
   };
   formList = [
     {
-      type: "INPUT",
-      label: "用户名",
-      field: "user_name",
-      placeholder: "请输入用户名",
-      width: 100
+      type: 'INPUT',
+      label: '用户名',
+      field: 'user_name',
+      placeholder: '请输入用户名',
+      width: 100,
     },
     {
-      type: "INPUT",
-      label: "手机号",
-      field: "user_mobile",
-      placeholder: "请输入手机号",
-      width: 100
+      type: 'INPUT',
+      label: '手机号',
+      field: 'user_mobile',
+      placeholder: '请输入手机号',
+      width: 100,
     },
     {
-      type: "DATEPICKER",
-      label: "请选择入职日期",
-      field: "user_data",
-      placeholder: "请选择日期"
-    }
+      type: 'DATEPICKER',
+      label: '请选择入职日期',
+      field: 'user_data',
+      placeholder: '请选择日期',
+    },
   ];
   componentDidMount() {
     this.request();
@@ -61,60 +51,60 @@ export default class User extends Component {
     this.request();
   };
   request = () => {
-    axios.get("user_list.php").then(res => {
+    axios.get('user_list.php').then(res => {
       this.setState({
-        dataSource: res.data.result.list
+        dataSource: res.data.result.list,
       });
     });
   };
   /* 点击创建员工的回调 */
   handleOperate = type => {
-    if (type === "create") {
+    if (type === 'create') {
       this.setState({
         type,
         isVisible: true,
-        title: "创建员工"
+        title: '创建员工',
       });
-    } else if (type === "edit") {
+    } else if (type === 'edit') {
       if (!this.state.selectItem.id) {
         Modal.info({
-          title: "提示",
-          content: "请选择一个一个用户"
+          title: '提示',
+          content: '请选择一个一个用户',
         });
       } else {
         this.setState({
           type,
           isVisible: true,
-          title: "编辑员工"
+          title: '编辑员工',
         });
       }
-    } else if (type === "detail") {
+    } else if (type === 'detail') {
       if (!this.state.selectItem.id) {
         Modal.info({
-          title: "提示",
-          content: "请选择一个一个用户"
+          title: '提示',
+          content: '请选择一个一个用户',
         });
       } else {
         this.setState({
           type,
           isVisible: true,
-          title: "员工详情"
+          title: '员工详情',
         });
       }
     } else {
       if (!this.state.selectItem.id) {
         Modal.info({
-          title: "提示",
-          content: "请选择一个一个用户"
+          title: '提示',
+          content: '请选择一个一个用户',
         });
       } else {
         Modal.confirm({
-          title: "确认删除",
-          content: "是否删除",
+          title: '确认删除',
+          content: '是否删除',
           onOk: () => {
             /* axios请求删除成功的接口 */
-            message.success("删除成功");
-          }
+            message.success('删除成功');
+          },
         });
       }
     }
@@ -127,71 +117,74 @@ export default class User extends Component {
   render() {
     const columns = [
       {
-        title: "id",
-        dataIndex: "id"
+        title: 'id',
+        dataIndex: 'id',
       },
       {
-        title: "用户名",
-        dataIndex: "username"
+        title: '用户名',
+        dataIndex: 'username',
       },
       {
-        title: "性别",
-        dataIndex: "sex",
+        title: '性别',
+        dataIndex: 'sex',
         render(sex) {
-          return sex === 1 ? "女" : "男";
-        }
+          return sex === 1 ? '女' : '男';
+        },
       },
       {
-        title: "状态",
-        dataIndex: "state",
+        title: '状态',
+        dataIndex: 'state',
         render(state) {
           return {
-            1: "走路中",
-            2: "吃饭中",
-            3: "打游戏",
-            4: "滑板鞋",
-            5: "发呆中"
+            1: '走路中',
+            2: '吃饭中',
+            3: '打游戏',
+            4: '滑板鞋',
+            5: '发呆中',
           }[state];
-        }
+        },
       },
       {
-        title: "爱好",
-        dataIndex: "interest",
+        title: '爱好',
+        dataIndex: 'interest',
         render(interest) {
           return {
-            1: "打篮球",
-            2: "踢足球",
-            3: "滑板鞋",
-            4: "打游戏",
-            5: "溜溜球",
-            6: "飞天",
-            7: "学习",
-            8: "乒乓球"
+            1: '打篮球',
+            2: '踢足球',
+            3: '滑板鞋',
+            4: '打游戏',
+            5: '溜溜球',
+            6: '飞天',
+            7: '学习',
+            8: '乒乓球',
           }[interest];
-        }
+        },
       },
       {
-        title: "生日",
-        dataIndex: "birthday"
+        title: '生日',
+        dataIndex: 'birthday',
       },
       {
-        title: "联系地址",
-        dataIndex: "address"
+        title: '联系地址',
+        dataIndex: 'address',
       },
       {
-        title: "早起时间",
-        dataIndex: "time"
-      }
+        title: '早起时间',
+        dataIndex: 'time',
+      },
     ];
+
     let dataSource = this.state.dataSource;
+
     dataSource = dataSource.map((item, index) => {
       item.key = index;
       return item;
     });
+
     let footer = {};
-    if (this.state.type === "detail") {
+    if (this.state.type === 'detail') {
       footer = {
-        footer: null
+        footer: null,
       };
     }
     return (
@@ -202,36 +195,36 @@ export default class User extends Component {
         <Card>
           <Button
             type="primary"
-            style={{ marginRight: "10px" }}
+            style={{ marginRight: '10px' }}
             onClick={() => {
-              this.handleOperate("create");
+              this.handleOperate('create');
             }}
           >
             创建员工
           </Button>
           <Button
             type="primary"
-            style={{ marginRight: "10px" }}
+            style={{ marginRight: '10px' }}
             onClick={() => {
-              this.handleOperate("edit");
+              this.handleOperate('edit');
             }}
           >
             编辑员工
           </Button>
           <Button
             type="primary"
-            style={{ marginRight: "10px" }}
+            style={{ marginRight: '10px' }}
             onClick={() => {
-              this.handleOperate("detail");
+              this.handleOperate('detail');
             }}
           >
             员工详情
           </Button>
           <Button
             type="primary"
-            style={{ marginRight: "10px" }}
+            style={{ marginRight: '10px' }}
             onClick={() => {
-              this.handleOperate("delete");
+              this.handleOperate('delete');
             }}
           >
             删除员工
@@ -246,20 +239,17 @@ export default class User extends Component {
             this.handleSubmit();
           }}
           onCancel={() => {
+            /* 重置表单 */
             this.refs.user_form.refs.form.resetFields();
             this.setState({
-              isVisible: false
+              isVisible: false,
             });
           }}
         >
           {this.state.isVisible ? (
-            <UserForm
-              ref="user_form"
-              type={this.state.type}
-              selectItem={this.state.selectItem}
-            />
+            <UserForm ref="user_form" type={this.state.type} selectItem={this.state.selectItem} />
           ) : (
-            ""
+            ''
           )}
         </Modal>
         <Card>
@@ -278,27 +268,27 @@ class UserForm extends Component {
   /* 判断state的值 */
   getState = state => {
     return {
-      1: "走路中",
-      2: "吃饭中",
-      3: "打游戏",
-      4: "滑板鞋",
-      5: "发呆中"
+      1: '走路中',
+      2: '吃饭中',
+      3: '打游戏',
+      4: '滑板鞋',
+      5: '发呆中',
     }[state];
   };
   render() {
     const formItemLayout = {
       labelCol: { span: 5 },
-      wrapperCol: { span: 15 }
+      wrapperCol: { span: 15 },
     };
     let initialValues = {};
     let { selectItem, type } = this.props;
-    if (type === "edit") {
+    if (type === 'edit') {
       initialValues = {
         user_name: selectItem.username,
         sex: selectItem.sex,
         state: this.getState(selectItem.state),
         birthday: moment(selectItem.birthday),
-        address: selectItem.address
+        address: selectItem.address,
       };
     } else {
       initialValues = {};
@@ -306,18 +296,18 @@ class UserForm extends Component {
     return (
       <Form ref="form" layout="horizontal" initialValues={initialValues}>
         <Form.Item name="user_name" label="用户名" {...formItemLayout}>
-          {type === "detail" ? (
+          {type === 'detail' ? (
             selectItem.username
           ) : (
             <Input type="text" placeholder="请输入用户名" />
           )}
         </Form.Item>
         <Form.Item name="sex" label="性别" {...formItemLayout}>
-          {type === "detail" ? (
+          {type === 'detail' ? (
             selectItem.sex === 1 ? (
-              "女"
+              '女'
             ) : (
-              "男"
+              '男'
             )
           ) : (
             <Radio.Group>
@@ -327,7 +317,7 @@ class UserForm extends Component {
           )}
         </Form.Item>
         <Form.Item name="state" label="状态" {...formItemLayout}>
-          {type === "detail" ? (
+          {type === 'detail' ? (
             this.getState(selectItem.state)
           ) : (
             <Select>
@@ -350,10 +340,10 @@ class UserForm extends Component {
           )}
         </Form.Item>
         <Form.Item name="birthday" label="生日" {...formItemLayout}>
-          {type === "detail" ? selectItem.birthday : <DatePicker />}
+          {type === 'detail' ? selectItem.birthday : <DatePicker />}
         </Form.Item>
         <Form.Item name="address" label="联系地址" {...formItemLayout}>
-          {type === "detail" ? (
+          {type === 'detail' ? (
             selectItem.address
           ) : (
             <Input.TextArea rows={3} placeholder="联系地址" />

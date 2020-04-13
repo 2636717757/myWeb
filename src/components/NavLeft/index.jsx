@@ -1,24 +1,31 @@
-import React, { Component } from "react";
-import MenuConfig from "./../../config/menuConfig";
-import Logo from "./../../assets/logo-ant.svg";
-import "./index.less";
-import { Menu } from "antd";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import MenuConfig from './../../config/menuConfig';
+import Logo from './../../assets/logo-ant.svg';
+import './index.less';
+import { Menu } from 'antd';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { change_mianbaoxie } from './../../redux/actions';
+
 const { SubMenu } = Menu;
 
-export default class NavLeft extends Component {
+class NavLeft extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuTreeNode: []
+      menuTreeNode: [],
     };
   }
   componentDidMount() {
     let menuTreeNode = this.renderMenu(MenuConfig);
     this.setState({
-      menuTreeNode
+      menuTreeNode,
     });
   }
+  handleClick = item => {
+    // console.log('item哈哈哈哈哈', item.item.props.children.props.children);
+    this.props.change_mianbaoxie(item.item.props.children.props.children);
+  };
   renderMenu = data => {
     return data.map(item => {
       if (item.children) {
@@ -29,7 +36,7 @@ export default class NavLeft extends Component {
         );
       }
       return (
-        <Menu.Item key={item.key}>
+        <Menu.Item key={item.key} onClick={this.handleClick}>
           <Link to={item.key}>{item.title}</Link>
         </Menu.Item>
       );
@@ -48,3 +55,9 @@ export default class NavLeft extends Component {
     );
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    prop: state.prop,
+  };
+};
+export default connect(mapStateToProps, { change_mianbaoxie })(NavLeft);
